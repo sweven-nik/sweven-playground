@@ -4,13 +4,17 @@ import sitemap from "@astrojs/sitemap";
 import { SITE_URL } from "./src/consts.ts";
 import { isNoindexRoute } from "./src/utils/seo.ts";
 
+import cloudflare from "@astrojs/cloudflare";
+
 export default defineConfig({
   site: SITE_URL,
+
   integrations: [
     sitemap({
       filter: (page) => !isNoindexRoute(new URL(page).pathname),
     }),
   ],
+
   fonts: [
     {
       name: "Inter",
@@ -27,5 +31,7 @@ export default defineConfig({
       },
     },
   ],
+
   vite: { build: { cssTarget: "safari15.4" } },
+  adapter: cloudflare({ prerenderEnvironment: "node" }),
 });
