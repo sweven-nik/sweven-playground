@@ -1,5 +1,6 @@
 .flex-grow {
   flex: 1;
+  margin-top: -1.13rem;
 }
 
 .flex-shrink {
